@@ -1,25 +1,39 @@
 {
   "nodes": {
-    "theforeman.example.com": {
+    "foreman": {
+      ":fqdn": "foreman.example.com",
       ":ip": "192.168.35.5",
-      "ports": [],
-      ":memory": 1024,
-      ":box": "puppetlabs/centos-7.0-64-puppet",
-      ":bootstrap": "bootstrap-foreman.sh"
+      "ports": [
+      {
+         ":host": 8443,
+         ":guest": 443,
+         ":id": "port-foreman"
+       },
+       {
+         ":host": 8140,
+         ":guest": 8140,
+         ":id": "port-puppetmaster"
+       }
+      ],
+      ":ram": 1024,
+      ":box": "centos/7",
+      ":bootstrap": [ "bootstrap-node.sh", "bootstrap-foreman.sh" ]
     },
-    "agent01.example.com": {
+    "client1": {
+      ":fqdn": "client1.example.com",
       ":ip": "192.168.35.10",
       "ports": [],
-      ":memory": 1024,
-      ":box": "puppetlabs/centos-7.0-64-puppet",
-      ":bootstrap": "bootstrap-node-rhel.sh"
+      ":ram": 256,
+      ":box": "centos/7",
+      ":bootstrap": [ "bootstrap-node.sh", "bootstrap-puppet-agent.sh" ]
     },
-    "agent02.example.com": {
+    "client2": {
+      ":fqdn": "client2.example.com",
       ":ip": "192.168.35.20",
       "ports": [],
-      ":memory": 1024,
-      ":box": "puppetlabs/centos-7.0-64-puppet",
-      ":bootstrap": "bootstrap-node-rhel.sh"
+      ":ram": 256,
+      ":box": "centos/7",
+      ":bootstrap": [ "bootstrap-node.sh", "bootstrap-puppet-agent.sh" ]
     }
   }
 }

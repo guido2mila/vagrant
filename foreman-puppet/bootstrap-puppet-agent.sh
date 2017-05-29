@@ -2,7 +2,7 @@
 
 rpm -qa|grep -q puppet-agent
 if [ $? == 0 ]; then
-  echo "Puppet agent already configured, agent version $(puppet agent --version)"
+  echo "Puppet agent appears to already be installed, agent version $(puppet agent --version)"
 else
   sudo yum -y install https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm && \
   sudo yum -y install puppet-agent

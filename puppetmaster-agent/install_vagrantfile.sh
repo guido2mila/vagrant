@@ -29,8 +29,7 @@ $setupscript = <<END
   yum -y install puppet-agent vim telnet nmap
   localectl set-keymap it
   timedatectl set-timezone Europe/Rome
-  GTIME=$(cat /etc/default/grub | grep "GRUB_TIMEOUT=")
-  sed -i "s/$GTIME/GRUB_TIMEOUT=0/" /etc/default/grub
+  sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/" /etc/default/grub
   grub2-mkconfig -o /boot/grub2/grub.cfg
   echo 'supercede domain-name "example.com";' > /etc/dhcp/dhclient.conf
   sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
@@ -71,10 +70,10 @@ Vagrant.configure("2") do |config|
 end
 EOF
 
-vagrant up
+#vagrant up
 
-vagrant reload puppet
-for i in $(vagrant status | grep "running " | awk '{print $1}' | grep -v puppet)
-do
-  vagrant reload $i
-done
+#vagrant reload puppet
+#for i in $(vagrant status | grep "running " | awk '{print $1}' | grep -v puppet)
+#do
+#  vagrant reload $i
+#done

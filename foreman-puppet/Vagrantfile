@@ -1,15 +1,3 @@
-#!/bin/sh
-
-vagrant plugin list | grep -q vagrant-hostmanager
-if [ $? -eq "1" ]; then
-  vagrant plugin install vagrant-hostmanager
-fi
-vagrant plugin list | grep -q vagrant-vbguest
-if [ $? -eq "1" ]; then
-  vagrant plugin install vagrant-vbguest
-fi
-
-cat << 'EOF' > Vagrantfile
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -58,4 +46,3 @@ Vagrant.configure("2") do |config|
     end
   end
 end
-EOF

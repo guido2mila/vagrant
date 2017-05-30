@@ -18,6 +18,8 @@ ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
 nodes_config = (JSON.parse(File.read("nodes.json")))['nodes']
 
 Vagrant.configure("2") do |config|
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+
   nodes_config.each do |node|
     node_name   = node[0] # name of node
     node_values = node[1] # content of node
@@ -42,11 +44,11 @@ Vagrant.configure("2") do |config|
       config.vm.hostname = node_values[':fqdn'] 
       config.vm.network :private_network, ip: node_values[':ip']
 
-      memory = node_values[:ram] ? node_values[:ram] : 256;
+      memory = node_values[':ram'] ? node_values[':ram'] : 256;
       config.vm.provider "virtualbox" do |vb|
         vb.customize [
           'modifyvm', :id,
-          '--name', node_values[':fqdn'],
+          '--name', node_name,
           '--memory', memory.to_s
         ]
       end

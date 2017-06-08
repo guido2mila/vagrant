@@ -1,11 +1,11 @@
 #!/bin/sh
 
-sudo cat /etc/dhcp/dhclient.con|grep -q "supercede"
+sudo cat /etc/dhcp/dhclient.conf|grep -q "supercede"
 if [ $? == 0 ]; then
   echo "First node configuration already done"
 else
   sudo yum -y update
-  sudo yum -y install vim telnet nmap
+  sudo yum -y install vim telnet nmap net-tools wget
   sudo localectl set-keymap it
   sudo timedatectl set-timezone Europe/Rome
   sudo sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/" /etc/default/grub

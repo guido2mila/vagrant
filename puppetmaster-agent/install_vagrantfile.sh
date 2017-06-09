@@ -26,7 +26,7 @@ puppet_nodes = [
 $setupscript = <<END
   sudo yum -y update
   yum -y install https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-  sudo yum -y install puppet-agent vim telnet nmap net-tools wget
+  sudo yum -y install puppet-agent vim telnet nmap net-tools wget psmisc
   sudo localectl set-keymap it
   sudo timedatectl set-timezone Europe/Rome
   sudo sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/" /etc/default/grub

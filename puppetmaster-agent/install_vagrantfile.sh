@@ -24,17 +24,17 @@ puppet_nodes = [
 ]
 
 $setupscript = <<END
-  yum -y update
+  sudo yum -y update
   yum -y install https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-  yum -y install puppet-agent vim telnet nmap
-  localectl set-keymap it
-  timedatectl set-timezone Europe/Rome
-  sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/" /etc/default/grub
-  grub2-mkconfig -o /boot/grub2/grub.cfg
-  echo 'supercede domain-name "example.com";' > /etc/dhcp/dhclient.conf
-  sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
-  setenforce 0
-  systemctl disable firewalld
+  sudo yum -y install puppet-agent vim telnet nmap net-tools wget
+  sudo localectl set-keymap it
+  sudo timedatectl set-timezone Europe/Rome
+  sudo sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/" /etc/default/grub
+  sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+  sudo echo 'supercede domain-name "example.com";' > /etc/dhcp/dhclient.conf
+  sudo sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
+  sudo setenforce 0
+  sudo systemctl disable firewalld
 END
 
 Vagrant.configure("2") do |config|

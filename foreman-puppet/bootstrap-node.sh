@@ -10,7 +10,7 @@ else
   sudo timedatectl set-timezone Europe/Rome
   sudo sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/" /etc/default/grub
   sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-  sudo echo 'supercede domain-name "example.com";' > /etc/dhcp/dhclient.conf
+  echo 'supercede domain-name "example.com";' | sudo tee /etc/dhcp/dhclient.conf
   sudo sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
   sudo setenforce 0
   sudo systemctl disable firewalld

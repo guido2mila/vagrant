@@ -5,7 +5,7 @@ if [ $? == 0 ]; then
   echo "First node configuration already done"
 else
   sudo yum -y update
-  sudo yum -y install vim telnet nmap net-tools wget
+  sudo yum -y install vim telnet nmap net-tools wget psmisc
   sudo localectl set-keymap it
   sudo timedatectl set-timezone Europe/Rome
   sudo sed -i "s/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/" /etc/default/grub
